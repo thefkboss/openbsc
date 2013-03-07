@@ -305,12 +305,14 @@ DEFUN(swow_mmctx_all, show_mmctx_all_cmd,
 	return CMD_SUCCESS;
 }
 
+#if 0
 DEFUN(show_ggsn, show_ggsn_cmd,
 	"show ggsn",
 	"")
 {
 
 }
+#endif
 
 DEFUN(show_pdpctx_all, show_pdpctx_all_cmd,
 	"show pdp-context all",
