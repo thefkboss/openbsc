@@ -413,6 +413,15 @@ struct gsm_bts *gsm_bts_alloc_register(struct gsm_network *net, enum gsm_bts_typ
 	bts->si_common.chan_desc.t3212 = 5; /* Use 30 min periodic update interval as sane default */
 	bts->si_common.cell_options.radio_link_timeout = 7; /* Use RADIO LINK TIMEOUT of 32 */
 
+	/* initialize T200 default values */
+	bts->t200.sdcch = 0x1e;
+	bts->t200.facch_fullrate = 0x24;
+	bts->t200.facch_halfrate = 0x24;
+	bts->t200.sacch_with_tch_sapi0 = 0xa8;
+	bts->t200.sacch_with_sdcch = 0x34;
+	bts->t200.sdcch_with_sapi3 = 0x21;
+	bts->t200.sacch_with_tch_sapi3 = 0xa8;
+
 	llist_add_tail(&bts->list, &net->bts_list);
 
 	INIT_LLIST_HEAD(&bts->abis_queue);
