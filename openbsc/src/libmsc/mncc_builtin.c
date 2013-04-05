@@ -67,7 +67,7 @@ static void store_bearer_cap(struct gsm_call *call, struct gsm_mncc *mncc)
 	memcpy(&call->bcap, &mncc->bearer_cap, sizeof(struct gsm_mncc_bearer_cap));
 }
 
-static uint8_t determine_lchan_mode(struct gsm_call *calling,
+static int determine_lchan_mode(struct gsm_call *calling,
 						struct gsm_call *called)
 {
 	int i, j;
@@ -77,8 +77,8 @@ static uint8_t determine_lchan_mode(struct gsm_call *calling,
 		LOGP(DMNCC, LOGL_NOTICE, "Not equal lchan_types\n");
 		return -ENOTSUP;
 	}
-	if (calling->lchan_type == GSM_LCHAN_TCH_F
-	 || calling->lchan_type != GSM_LCHAN_TCH_H) {
+	if (calling->lchan_type != GSM_LCHAN_TCH_F
+	 && calling->lchan_type != GSM_LCHAN_TCH_H) {
 		LOGP(DMNCC, LOGL_NOTICE, "Not TCH lchan_types\n");
 		return -ENOTSUP;
 	}
@@ -95,8 +95,10 @@ static uint8_t determine_lchan_mode(struct gsm_call *calling,
 			continue;
 		for (j = 0; called->bcap.speech_ver[j] >= 0; j++) {
 			if (calling->bcap.speech_ver[i]
-			  == called->bcap.speech_ver[j])
-				return calling->bcap.speech_ver[i];
+			  == called->bcap.speech_ver[j]) {
+				/* convert speech version to lchan mode */
+				return ((calling->bcap.speech_ver[i] & 0xe) << 4) | 1;
+			}
 		}
 	}
 
