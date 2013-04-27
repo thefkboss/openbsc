@@ -1774,6 +1774,7 @@ int tch_frame_down(struct gsm_network *net, uint32_t callref, struct gsm_data_fr
 	}
 	bts = trans->conn->lchan->ts->trx->bts;
 	switch (bts->type) {
+	case GSM_BTS_TYPE_OSMO_SYSMO:
 	case GSM_BTS_TYPE_NANOBTS:
 		if (!trans->conn->lchan->abis_ip.rtp_socket) {
 			DEBUGP(DMNCC, "TCH frame to lchan without RTP connection\n");

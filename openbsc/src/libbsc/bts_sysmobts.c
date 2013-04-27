@@ -45,6 +45,8 @@ extern struct gsm_bts_model bts_model_nanobts;
 
 static struct gsm_bts_model model_sysmobts;
 
+extern struct gsm_network *ipaccess_gsmnet;
+
 static int bts_model_sysmobts_start(struct gsm_network *net)
 {
 	model_sysmobts.features.data = &model_sysmobts._features_data[0];
@@ -55,6 +57,8 @@ static int bts_model_sysmobts_start(struct gsm_network *net)
 	gsm_btsmodel_set_feature(&model_sysmobts, BTS_FEAT_EGPRS);
 
 	osmo_signal_register_handler(SS_NM, bts_ipa_nm_sig_cb, NULL);
+
+	ipaccess_gsmnet = net;
 
 	return 0;
 }
