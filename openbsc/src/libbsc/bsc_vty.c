@@ -3909,7 +3909,6 @@ int bsc_vty_init(const struct log_info *cat)
 	install_element(BTS_NODE, &cfg_bts_si5_neigh_cmd);
 	install_element(BTS_NODE, &cfg_bts_excl_rf_lock_cmd);
 	install_element(BTS_NODE, &cfg_bts_no_excl_rf_lock_cmd);
-<<<<<<< HEAD
 	install_element(BTS_NODE, &cfg_bts_codec1_cmd);
 	install_element(BTS_NODE, &cfg_bts_codec2_cmd);
 	install_element(BTS_NODE, &cfg_bts_codec3_cmd);
@@ -3937,7 +3936,6 @@ int bsc_vty_init(const struct log_info *cat)
 	install_element(BTS_NODE, &cfg_bts_amr_hr_hyst2_cmd);
 	install_element(BTS_NODE, &cfg_bts_amr_hr_hyst3_cmd);
 	install_element(BTS_NODE, &cfg_bts_amr_hr_start_mode_cmd);
-=======
 	install_element(BTS_NODE, &cfg_bts_t200_sdcch_cmd);
 	install_element(BTS_NODE, &cfg_bts_t200_facch_fullrate_cmd);
 	install_element(BTS_NODE, &cfg_bts_t200_facch_halfrate_cmd);
@@ -3945,7 +3943,6 @@ int bsc_vty_init(const struct log_info *cat)
 	install_element(BTS_NODE, &cfg_bts_t200_sacch_with_sdcch_cmd);
 	install_element(BTS_NODE, &cfg_bts_t200_sdcch_with_sapi3_cmd);
 	install_element(BTS_NODE, &cfg_bts_t200_sacch_with_tch_sapi3_cmd);
->>>>>>> bts: Implement setting the T200 for the BS11 and nanoBTS
 
 	install_element(BTS_NODE, &cfg_trx_cmd);
 	install_node(&trx_node, dummy_config_write);
